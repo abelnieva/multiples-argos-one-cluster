@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-test
+  namespace:  {{ .Values.namespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ include "argocd-project-name" . }}
+  source:
+    repoURL: https://helm.github.io/examples
+    chart: hello-world
+
+  destination:
+    name: in-cluster
+    namespace:  {{ .Values.namespace }}
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
