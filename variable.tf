@@ -5,3 +5,7 @@ variable "image_tag" {
 variable "argocd_chart_version" {
   default = "5.34.5"
 }
+
+variable "image_repo" {
+  default = "quay.io/argoproj/argocd"
+}
